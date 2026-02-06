@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pricing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#6366f1;
+  --secondary:#22c55e;
+  --bg:#f8fafc;
+  --dark:#0f172a;
+  --muted:#64748b;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  font-family: Inter, sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:var(--dark);
+}
+
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:80px 24px;
+}
+
+/* HEADER */
+header {
+  text-align:center;
+  margin-bottom:60px;
+}
+header h1 {
+  font-size:44px;
+}
+header p {
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* PLAN SWITCH */
+.switcher {
+  display:flex;
+  justify-content:center;
+  margin:40px 0;
+}
+.switch {
+  background:#e5e7eb;
+  padding:6px;
+  border-radius:999px;
+  display:flex;
+}
+.switch button {
+  padding:12px 26px;
+  border:none;
+  background:none;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--muted);
+}
+.switch button.active {
+  background:#fff;
+  color:var(--primary);
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* BILLING TOGGLE */
+.billing {
+  display:none;
+  justify-content:center;
+  gap:16px;
+  margin-bottom:40px;
+  font-weight:600;
+}
+.billing span {
+  cursor:pointer;
+  color:var(--muted);
+}
+.billing span.active {
+  color:var(--primary);
+}
+
+/* CARDS */
+.plans {
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+.plans.active {
+  display:grid;
+}
+
+.card {
+  background:#fff;
+  border-radius:22px;
+  padding:36px;
+  box-shadow:0 25px 45px rgba(0,0,0,0.08);
+  position:relative;
+}
+
+.card.popular {
+  border:2px solid var(--primary);
+}
+
+.badge {
+  position:absolute;
+  top:-14px;
+  left:28px;
+  background:linear-gradient(135deg,var(--primary),#818cf8);
+  color:#fff;
+  padding:6px 16px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.card h3 {
+  font-size:24px;
+}
+
+.team {
+  color:var(--secondary);
+  font-weight:600;
+  margin:8px 0;
+}
+
+.price {
+  font-size:36px;
+  font-weight:700;
+  margin:14px 0;
+}
+
+.sub {
+  color:var(--muted);
+  margin-bottom:22px;
+}
+
+ul {
+  list-style:none;
+  padding:0;
+}
+li {
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+li::before {
+  content:"✔";
+  color:var(--secondary);
+  font-weight:700;
+}
+
+/* CTA */
+.cta {
+  margin-top:28px;
+}
+.cta button {
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  background:var(--primary);
+  color:#fff;
+}
+.cta button.secondary {
+  background:#e0e7ff;
+  color:var(--primary);
+}
+
+/* FOOTNOTE */
+.note {
+  text-align:center;
+  margin-top:70px;
+  color:var(--muted);
+  font-size:15px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>Pricing built around real team sizes</h1>
+  <p>Grow freely early. Pay per user only when scale actually matters.</p>
+</header>
+
+<!-- PLAN SWITCH -->
+<div class="switcher">
+  <div class="switch">
+    <button class="active" onclick="switchPlans('personal')">Personal</button>
+    <button onclick="switchPlans('business')">Business</button>
+  </div>
+</div>
+
+<!-- BILLING TOGGLE -->
+<div class="billing" id="billingToggle">
+  <span class="active" onclick="switchBilling('monthly')">Monthly</span>
+  <span onclick="switchBilling('annual')">Annual (Save more)</span>
+</div>
+
+<!-- PERSONAL -->
+<div class="plans active" id="personal">
+
+  <div class="card">
+    <h3>Free</h3>
+    <div class="team">Upto 10 users</div>
+    <div class="price">No cost, always free.</div>
+    <ul>
+      <li>Unlimited projects</li>
+      <li>Core task management</li>
+      <li>File sharing & comments</li>
+      <li>Email notifications</li>
+    </ul>
+    <div class="cta"><button>Get started</button></div>
+  </div>
+
+  <div class="card popular">
+    <span class="badge">Most popular</span>
+    <h3>Starter</h3>
+    <div class="team">Upto 15 users</div>
+    <div class="price">$299/ year</div>
+    <div class="sub">Annual only · Ideal for startups & agencies</div>
+    <ul>
+      <li>Everything in Starter</li>
+      <li>Timeline & board views</li>
+      <li>Basic automation</li>
+      <li>Priority support</li>
+    </ul>
+    <div class="cta"><button>Upgrade</button></div>
+  </div>
+
+  <div class="card">
+    <h3>Plus</h3>
+    <div class="team">Upto 30 users</div>
+    <div class="price">$499/year</div>
+    <div class="sub">$10/user/month on monthly billing · Max capacity for Personal</div>
+    <ul>
+      <li>Everything in Plus</li>
+      <li>Advanced reports</li>
+      <li>Roles & permissions</li>
+      <li>Hard user cap at 30</li>
+    </ul>
+    <div class="cta"><button class="secondary">Choose plan</button></div>
+  </div>
+
+</div>
+
+<!-- BUSINESS -->
+<div class="plans" id="business">
+
+  <div class="card">
+    <h3>Business Starter</h3>
+    <div class="team">Upto 50 users</div>
+    <div class="price" id="b1">$11/user/month</div>
+    <div class="sub">Per-user pricing · Minimum seat block applies</div>
+    <ul>
+      <li>Department workspaces</li>
+      <li>Automation & integrations</li>
+      <li>Advanced permissions</li>
+      <li>Email & chat support</li>
+    </ul>
+    <div class="cta"><button>Start Business</button></div>
+  </div>
+
+  <div class="card popular">
+    <span class="badge">Best for scale</span>
+    <h3>Business Growth</h3>
+    <div class="team">Upto 100 users</div>
+    <div class="price" id="b2">$15/user/month</div>
+    <div class="sub">Optimized pricing for growing orgs</div>
+    <ul>
+      <li>Workload management</li>
+      <li>Custom workflows</li>
+      <li>Advanced reporting</li>
+      <li>Priority SLA</li>
+    </ul>
+    <div class="cta"><button>Upgrade</button></div>
+  </div>
+
+  <div class="card">
+    <h3>Enterprise</h3>
+    <div class="team">150+ users</div>
+    <div class="price">Custom</div>
+    <div class="sub">For large organizations</div>
+    <ul>
+      <li>Unlimited scale</li>
+      <li>SSO & advanced security</li>
+      <li>Dedicated success manager</li>
+      <li>Custom contracts</li>
+    </ul>
+    <div class="cta"><button class="secondary">Contact sales</button></div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function switchPlans(type) {
+  document.querySelectorAll('.switch button').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  document.getElementById('personal').classList.remove('active');
+  document.getElementById('business').classList.remove('active');
+
+  if(type==='business'){
+    document.getElementById('business').classList.add('active');
+    document.getElementById('billingToggle').style.display='flex';
+  } else {
+    document.getElementById('personal').classList.add('active');
+    document.getElementById('billingToggle').style.display='none';
+  }
+}
+
+function switchBilling(mode){
+  document.querySelectorAll('.billing span').forEach(s=>s.classList.remove('active'));
+  event.target.classList.add('active');
+
+  if(mode==='annual'){
+    document.getElementById('b1').innerText="$1482 (annual) / user";
+    document.getElementById('b2').innerText="$1620 (annual) / user";
+  } else {
+    document.getElementById('b1').innerText="₹A / user";
+    document.getElementById('b2').innerText="₹B / user";
+  }
+}
+</script>
+
+</body>
+</html>
